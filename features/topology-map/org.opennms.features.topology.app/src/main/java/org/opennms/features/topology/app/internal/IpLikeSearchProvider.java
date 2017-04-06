@@ -98,10 +98,10 @@ public class IpLikeSearchProvider extends AbstractSearchProvider implements Sear
      * 
      */
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
     	LOG.info("SearchProvider->query: called with search query: '{}'", searchQuery);
 
-        List<SearchResult> results = new ArrayList<SearchResult>();
+        Set<SearchResult> results = new HashSet<SearchResult>();
         
 		String queryString = searchQuery.getQueryString();
 		

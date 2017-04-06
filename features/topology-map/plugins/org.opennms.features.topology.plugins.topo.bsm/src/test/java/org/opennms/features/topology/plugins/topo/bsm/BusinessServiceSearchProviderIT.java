@@ -28,7 +28,7 @@
 
 package org.opennms.features.topology.plugins.topo.bsm;
 
-import java.util.List;
+import java.util.Set;
 
 import org.easymock.EasyMock;
 import org.junit.Assert;
@@ -117,7 +117,7 @@ public class BusinessServiceSearchProviderIT {
                 return true; // always match, it does not matter
             }
         };
-        final List<SearchResult> result = provider.query(query, graphContainerMock);
+        final Set<SearchResult> result = provider.query(query, graphContainerMock);
         Assert.assertEquals(1, result.size());
         EasyMock.verify(graphContainerMock, graphProviderMock);
     }

@@ -34,6 +34,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -124,8 +125,8 @@ public class AbstractSearchProviderTest {
             }
 
             @Override
-            public List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
-                List<SearchResult> verts = new ArrayList<SearchResult>();
+            public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
+                Set<SearchResult> verts = new HashSet<SearchResult>();
                 for (VertexRef vertexRef : m_vertexRefs) {
                     if (searchQuery.matches(vertexRef.getLabel())) {
                         verts.add(new SearchResult(vertexRef.getNamespace(), vertexRef.getId(), vertexRef.getLabel(), searchQuery.getQueryString()));

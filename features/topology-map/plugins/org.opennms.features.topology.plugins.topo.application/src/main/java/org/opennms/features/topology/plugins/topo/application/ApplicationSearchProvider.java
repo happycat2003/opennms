@@ -29,7 +29,7 @@
 package org.opennms.features.topology.plugins.topo.application;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -49,7 +49,6 @@ import org.opennms.netmgt.vaadin.core.TransactionAwareBeanProxyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 public class ApplicationSearchProvider extends AbstractSearchProvider implements SearchProvider {
@@ -79,9 +78,9 @@ public class ApplicationSearchProvider extends AbstractSearchProvider implements
     }
 
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer container) {
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer container) {
         LOG.info("ApplicationServiceSearchProvider->query: called with search query: '{}'", searchQuery);
-        List<SearchResult> results = Lists.newArrayList();
+        Set<SearchResult> results = new HashSet<>();
 
         String queryString = searchQuery.getQueryString();
         CriteriaBuilder bldr = new CriteriaBuilder(OnmsApplication.class);

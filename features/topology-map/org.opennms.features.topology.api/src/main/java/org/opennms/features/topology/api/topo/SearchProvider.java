@@ -28,7 +28,6 @@
 
 package org.opennms.features.topology.api.topo;
 
-import java.util.List;
 import java.util.Set;
 
 import org.opennms.features.topology.api.GraphContainer;
@@ -73,7 +72,7 @@ public interface SearchProvider {
      * @param graphContainer
      * @return A list of SearchResults
      */
-    List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer);
+    Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer);
     
     
     

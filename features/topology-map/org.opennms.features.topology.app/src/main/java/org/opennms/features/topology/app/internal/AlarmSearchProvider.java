@@ -29,7 +29,6 @@
 package org.opennms.features.topology.app.internal;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -154,16 +153,16 @@ public class AlarmSearchProvider extends AbstractSearchProvider implements Searc
     }
 
     /**
-     * This method processes the <SearchQuery> that the user has typed and returns a <SearchResult> list
+     * This method processes the <SearchQuery> that the user has typed and returns a <SearchResult> set
      * of matching IP addresses as well as the query string itself, which is collapsible, to act
      * as a subnet container.
      * 
      */
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
     	LOG.info("SearchProvider.query: called with search query: '{}'", searchQuery);
 
-        final List<SearchResult> results = new ArrayList<>();
+        final Set<SearchResult> results = new HashSet<SearchResult>();
 		final String queryString = searchQuery.getQueryString();
 		if (!isAlarmQuery(queryString)) {
 			LOG.debug("SearchProvider.query: query not Alarm compatible.");
@@ -207,7 +206,7 @@ public class AlarmSearchProvider extends AbstractSearchProvider implements Searc
         return queryResults;
     }
 
-    private List<OnmsAlarm> findAlarms(final List<SearchResult> results, final String queryString) {
+    private List<OnmsAlarm> findAlarms(final Set<SearchResult> results, final String queryString) {
         CriteriaBuilder bldr = new CriteriaBuilder(OnmsAlarm.class);
         
         OnmsSeverity severity = OnmsSeverity.get(queryString);

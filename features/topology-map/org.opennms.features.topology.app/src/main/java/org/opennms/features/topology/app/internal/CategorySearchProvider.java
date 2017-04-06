@@ -29,10 +29,9 @@
 package org.opennms.features.topology.app.internal;
 
 
-import java.util.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.opennms.features.topology.api.GraphContainer;
@@ -73,11 +72,11 @@ public class CategorySearchProvider extends AbstractSearchProvider implements Se
     }
 
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
 
         Collection<OnmsCategory> categories = m_categoryDao.findAll();
 
-        List<SearchResult> results = new ArrayList<SearchResult>();
+        Set<SearchResult> results = new HashSet<SearchResult>();
         for (OnmsCategory category : categories) {
             if (!checkHiddenPrefix(category.getName()) && searchQuery.matches(category.getName())) {
                 SearchResult result = new SearchResult("category", category.getId().toString(), category.getName(), searchQuery.getQueryString());

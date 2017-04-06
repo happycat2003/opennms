@@ -28,7 +28,6 @@
 
 package org.opennms.features.topology.plugins.ncs;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -137,8 +136,8 @@ public class NCSSearchProvider extends AbstractSearchProvider implements SearchP
     }
 
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
-        List<SearchResult> searchResults = new ArrayList<SearchResult>();
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer graphContainer) {
+        Set<SearchResult> searchResults = new HashSet<SearchResult>();
 
         List<NCSComponent> components = m_ncsComponentRepository.findByType("Service");
         for (NCSComponent component : components) {

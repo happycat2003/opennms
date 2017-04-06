@@ -59,16 +59,16 @@ public abstract class SimpleSearchProvider extends AbstractSearchProvider {
     public abstract List<? extends VertexRef> queryVertices(SearchQuery searchQuery, GraphContainer container);
     
     @Override
-    public List<SearchResult> query(SearchQuery searchQuery, GraphContainer container) {
+    public Set<SearchResult> query(SearchQuery searchQuery, GraphContainer container) {
         LOG.info("SimpleSearchProvider->query: called with search query: '{}'", searchQuery);
 
         // Build search results from the matching vertices
-        final List<SearchResult> results = queryVertices(searchQuery, container).stream().map(v -> {
+        final Set<SearchResult> results = queryVertices(searchQuery, container).stream().map(v -> {
             SearchResult searchResult = new SearchResult(v);
             searchResult.setCollapsed(false);
             searchResult.setCollapsible(true);
             return searchResult;
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toSet());
 
         LOG.info("SimpleSearchProvider->query: found {} results: {}", results.size(), results);
         return results;
